@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ice Cream Details</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)),
+                        url('https://images.unsplash.com/photo-1560008511-11c63416e52d?q=80&w=1920') no-repeat center center fixed/cover;
+            background: linear-gradient(135deg, #fff5f7 0%, #fbcfe8 100%); 
+            color: #1e293b;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; padding: 20px; 
+        }
+        .details-card { background: rgba(255, 255, 255, 0.95); max-width: 500px; width: 100%; border-radius: 24px; padding: 30px; box-shadow: 0 15px 35px rgba(0,0,0,0.3); text-align: center; }
+        img { width: 100%; height: 260px; object-fit: cover; border-radius: 16px; margin-bottom: 20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        h2 { color: #be185d; font-size: 1.8rem; margin-bottom: 5px; }
+        .meta { color: #64748b; margin-bottom: 15px; font-weight: 500; }
+        .price { font-size: 1.8rem; color: #db2777; font-weight: 700; margin-bottom: 25px; }
+        .order-box { background: #fff1f2; padding: 20px; border-radius: 16px; border: 1px dashed #fbcfe8; }
+        .primary-btn { background: linear-gradient(135deg, #ec4899 0%, #f43f5e 100%); color: white; border: none; width: 100%; padding: 14px; border-radius: 12px; font-weight: 600; cursor: pointer; margin-top: 15px; font-size: 1rem; }
+        .primary-btn:hover { background: #ec4899; color: white; transform: scale(1.02); }
+    </style>
+</head>
+<body>
+    <div class="details-card">
+        <img id="detImg" src="" alt="Ice cream">
+        <h2 id="detName">Flavor</h2>
+        <div class="meta" id="detMeta">Metadata parameters</div>
+        <div class="price" id="detPrice">₹00</div>
+        
+        <div class="order-box">
+            <p style="color: #be185d; font-weight:600; margin-bottom: 5px;">Ready to customize this batch?</p>
+            <button class="primary-btn" onclick="window.location.href='payment.html'">Proceed to Order Box</button>
+        </div>
+    </div>
+
+    <script>
+        const item = JSON.parse(localStorage.getItem('chosenIceCream'));
+        if(item) {
+            document.getElementById('detImg').src = item.img;
+            document.getElementById('detName').innerText = item.name;
+            document.getElementById('detMeta').innerText = `Type: ${item.type} | Classification: ${item.flavor}`;
+            document.getElementById('detPrice').innerText = `₹${item.price}`;
+        }
+    </script>
+</body>
+</html>
