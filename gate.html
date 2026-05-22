@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment Gateway Auth</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        
+        /* THEME BACKGROUND CHANGE */
+        body { 
+            background: linear-gradient(135deg, #fff5f7 0%, #fbcfe8 100%); 
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; 
+        }
+        
+        /* CARD STYLE WITH SOFT PINK ACCENT */
+        .gate-card { 
+            background: rgba(255, 255, 255, 0.9); padding: 35px; border-radius: 24px; width: 400px; 
+            box-shadow: 0 10px 30px rgba(219,39,119,0.05); border: 1px solid white; backdrop-filter: blur(5px);
+        }
+        
+        /* PINK TEXT HEADINGS */
+        h2 { color: #be185d; text-align: center; margin-bottom: 25px; font-weight: 700; font-size: 1.4rem; }
+        .form-group { margin-bottom: 18px; }
+        label { display: block; font-size: 0.85rem; font-weight: 600; color: #db2777; margin-bottom: 6px; }
+        
+        /* INPUT BORDERS */
+        input { width: 100%; padding: 12px; border: 1px solid #fbcfe8; border-radius: 10px; outline: none; background: white; color: #1e293b; }
+        
+        /* DEEP PINK BUTTON */
+        .primary-btn { background: #be185d; color: white; border: none; width: 100%; padding: 14px; border-radius: 10px; font-weight: 600; cursor: pointer; margin-top: 10px; transition: 0.2s; }
+        .primary-btn:hover { background: #9d174d; }
+    </style>
+</head>
+<body>
+    <div class="gate-card">
+        <h2 id="gateTitle">Secure Gateway</h2>
+        <form onsubmit="window.location.href='confirmation.html'; return false;">
+            <div class="form-group">
+                <label id="idLabel">Payment ID Registration</label>
+                <input type="text" placeholder="Enter secure payment ID" required>
+            </div>
+            <div class="form-group">
+                <label>Secure Gateway Password / PIN</label>
+                <input type="password" placeholder="••••••••" required>
+            </div>
+            <button type="submit" class="primary-btn">Verify & Complete Order</button>
+        </form>
+    </div>
+    <script>
+        const mode = localStorage.getItem('paymentMode');
+        document.getElementById('gateTitle').innerText = `Secure ${mode} Gateway`;
+        if(mode === 'UPI') { document.getElementById('idLabel').innerText = 'Enter UPI ID (e.g., name@upi)'; } 
+        else { document.getElementById('idLabel').innerText = 'Enter 16-Digit Card Number'; }
+    </script>
+</body>
+</html>
