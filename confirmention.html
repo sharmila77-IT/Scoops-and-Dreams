@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Success!</title>
+    <link rel="icon" type="image/png" href="logo.png">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: 'Poppins', sans-serif; }
+        body { 
+            background: linear-gradient(rgba(255, 255, 255, 0.5), rgba(255, 255, 255, 0.5)),
+                        url('https://images.unsplash.com/photo-1516559828984-fb3b99548b21?q=80&w=1920') no-repeat center center fixed/cover;
+            background: linear-gradient(135deg, #fff5f7 0%, #fbcfe8 100%); 
+            color: #1e293b;
+            display: flex; justify-content: center; align-items: center; min-height: 100vh; 
+        }
+        .success-box { background: rgba(255, 255, 255, 0.95); width: 480px; padding: 40px; border-radius: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.15); text-align: center; backdrop-filter: blur(5px); }
+        .icon { font-size: 4.5rem; margin-bottom: 15px; }
+        h1 { color: #be185d; margin-bottom: 10px; font-size: 1.8rem; }
+        p { color: #64748b; margin-bottom: 25px; }
+        .summary-box { background: #fff1f2; padding: 20px; border-radius: 14px; text-align: left; font-size: 0.9rem; margin-bottom: 30px; line-height: 1.7; border: 1px solid #ffe4e6; }
+        .primary-btn { background: #bf306c; color: white; border: none; padding: 12px 30px; border-radius: 10px; font-weight: 600; cursor: pointer; text-decoration: none; display: inline-block;  transition: backround 0.2s}
+        .primary-btn:hover { background: #ec4899; color: white; transform: scale(1.02); }
+        
+   </style>
+</head>
+<body>
+    <div class="success-box">
+        <div class="icon">🎉</div>
+        <h1>Order Placed Successfully!</h1>
+        <p>Your fresh ice cream batch is being prepared!</p>
+        
+        <div class="summary-box">
+            <div><strong>Selected Scoop:</strong> <span id="sumItem"></span></div>
+            <div><strong>Recipient:</strong> <span id="sumUser"></span></div>
+            <div><strong>Shipping Address:</strong> <span id="sumAddr"></span></div>
+            <div><strong>Routing Hub:</strong> <span id="sumHub"></span></div>
+            <div><strong>Payment Pipeline:</strong> <span id="sumPay"></span></div>
+        </div>
+        <a href="dashboard.html" class="primary-btn">Return to Marketplace</a>
+    </div>
+    <script>
+        const item = JSON.parse(localStorage.getItem('chosenIceCream'));
+        document.getElementById('sumItem').innerText = item ? `${item.name} (₹${item.price})` : 'Artisan Ice Cream';
+        document.getElementById('sumUser').innerText = localStorage.getItem('userName') || 'Customer';
+        document.getElementById('sumAddr').innerText = localStorage.getItem('userAddress') || 'Delivery Area';
+        document.getElementById('sumHub').innerText = `${localStorage.getItem('userLocation') || 'Landmark'}, ${localStorage.getItem('userCity') || ''}`;
+        document.getElementById('sumPay').innerText = localStorage.getItem('paymentMode') || 'COD';
+    </script>
+</body>
+</html>
